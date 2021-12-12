@@ -6,7 +6,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "create:migration": "mikro-orm migration:create"
   },
   "keywords": [],
   "author": "",
