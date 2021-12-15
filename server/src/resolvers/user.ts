@@ -1,5 +1,5 @@
-import { User } from "src/entities/User";
-import { MyContext } from "src/types";
+import { User } from "../entities/User";
+import { MyContext } from "../types";
 import { Arg, Ctx, Field, InputType, Mutation, ObjectType, Resolver } from "type-graphql";
 import argon2 from "argon2";
 @InputType()
@@ -35,21 +35,53 @@ export class UserResolver {
     async register(
         @Arg('options') options: UsernamePasswordInput,
         @Ctx() {em}: MyContext
-    ){        
-        const hashedPassword = await argon2.hash(options.password);
-        const user = em.create(User, {
-            username: options.username,
-            password: hashedPassword
-        });
-        
-        await em.persistAndFlush(user);
-        return user;
-    }
+    ): Promise<UserResponse>{       
+			if(options.username.length <= 2){
+				return {
+					errors: [{
+						field: 'username',
+						message: 'length must be grater than 2'
+					}]
+				}
+			}
+
+			if(options.password.length <= 2){
+				return {
+					errors: [{
+						field: 'password',
+						message: 'length must be grater than 3'
+					}]
+				}
+			}
+			
+			const hashedPassword = await argon2.hash(options.password);
+			const user = em.create(User, {
+					username: options.username,
+					password: hashedPassword
+			});
+			try{
+				await em.persistAndFlush(user);
+			} catch (err: any) {
+				if (err.code === "23505") {
+					return {
+						errors: [
+							{
+								field: "username",
+								message: "username already taken",
+							},
+						],
+					};
+				}
+			}
+			return {
+				user
+			};
+	}
 
     @Mutation(() => UserResponse)
     async login(
         @Arg('options') options: UsernamePasswordInput,
-        @Ctx() {em}: MyContext
+        @Ctx() {em, req}: MyContext
     ): Promise<UserResponse> {
         const user = await em.findOneOrFail(User, {username: options.username.toLowerCase()});
         if(!user){
@@ -75,12 +107,10 @@ export class UserResolver {
 				  }       
 			  }
 
+				req.session!.userId = user.id;
 
         return {
 					user,
 				};
     }
-
-
-    
 }
