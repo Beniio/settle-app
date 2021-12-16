@@ -8,7 +8,8 @@ import { buildSchema } from 'type-graphql';
 import { HelloResolver } from "./resolvers/hello";
 import { PostResolver } from "./resolvers/post";
 import { UserResolver } from "./resolvers/user";
-import Redis from "ioredis";
+// import redis from "ioredis";
+import redis from "redis"
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 
@@ -19,13 +20,13 @@ const main = async () => {
     const app = express();
 
     const RedisStore = connectRedis(session);
-    const redis = new Redis();
-
+    const redisClient = redis.createClient();
+		
     app.use(
 			session({
 				name: 'qid',
 				store: new RedisStore({ 
-					client: redis,
+					client: redisClient || null,
 					disableTouch: true,
 				}),
 				cookie: {
