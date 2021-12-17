@@ -2,7 +2,13 @@
   "name": "settle",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+  "dependencies": {  
+    "@chakra-ui/icons": "^1.0.0",
+    "@chakra-ui/react": "^1.4.2",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "framer-motion": "^4.0.3",
+    "next": "latest",
     "@mikro-orm/cli": "^4.5.9",
     "@mikro-orm/core": "^4.5.9",
     "@mikro-orm/migrations": "^4.5.9",
@@ -22,10 +28,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "eslintConfig": {
     "extends": [
