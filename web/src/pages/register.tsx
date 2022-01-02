@@ -8,7 +8,7 @@ interface registerProps {}
 const Register: React.FC<registerProps> = ({}) => {
     return (
         <Wrapper>
-          <Formik 
+        <Formik 
         initialValues={{username: "", password: "" }}
         onSubmit={(values) => {
             console.log(values)
