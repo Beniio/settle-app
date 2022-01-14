@@ -28,6 +28,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-is": "^16.13.1",
+    "ts-node": "^10.4.0",
     "urql": "^1.10.0"
   },
   "devDependencies": {

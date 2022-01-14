@@ -39,3 +39,5 @@ const Register: React.FC<registerProps> = ({}) => {
     </Wrapper>
   );
 };
+
+export default Register;
