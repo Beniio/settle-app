@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "nodemon src/index.ts",
+    "build": "tsc",
     "watch": "tsc -w",
     "create:migration": "mikro-orm migration:create",
     "gen": "graphql-codegen --config codegen.yml"
@@ -15,6 +16,9 @@
   "license": "ISC",
   "devDependencies": {
     "@graphql-codegen/cli": "2.3.1",
+    "@graphql-codegen/typescript": "2.4.2",
+    "@graphql-codegen/typescript-operations": "2.2.2",
+    "@graphql-codegen/typescript-react-apollo": "3.2.4",
     "@types/connect-redis": "^0.0.18",
     "@types/express": "^4.17.13",
     "@types/express-session": "^1.17.4",
@@ -23,10 +27,7 @@
     "nodemon": "^2.0.15",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.2",
-    "@graphql-codegen/typescript-react-apollo": "3.2.4",
-    "@graphql-codegen/typescript": "2.4.2",
-    "@graphql-codegen/typescript-operations": "2.2.2"
+    "typescript": "^4.5.2"
   },
   "dependencies": {
     "@mikro-orm/cli": "^4.5.9",
@@ -35,6 +36,7 @@
     "@types/redis": "^4.0.11",
     "apollo-server-express": "^2.16.1",
     "argon2": "^0.28.3",
+    "class-validator": "^0.13.2",
     "connect-redis": "^6.0.0",
     "create-react-app": "^4.0.3",
     "express": "^4.17.1",
