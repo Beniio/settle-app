@@ -5,7 +5,7 @@ import { Wrapper } from '../components/Wrapper';
 import { InputField } from '../components/InputField';
 import { useRegisterMutation } from '../generated/graphql';
 import { toErrorMap } from '../utils/toErrorMap';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 interface registerProps {}
 

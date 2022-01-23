@@ -11,14 +11,14 @@ interface loginProps {}
 
 const Login: React.FC<loginProps> = ({}) => {
   const router = useRouter();
-  const [, register] = useLoginMutation();
+  const [, login] = useLoginMutation();
 
   return (
     <Wrapper variant="small">
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={async (values, { setErrors }) => {
-          const response = await register(values);
+          const response = await login(values);
           if (response.data?.login?.errors) {
             setErrors(
               toErrorMap(response.data.login.errors)
@@ -49,7 +49,7 @@ const Login: React.FC<loginProps> = ({}) => {
               type="submit"
               variantColor="teal"
             >
-              register
+              Login
             </Button>
           </Form>
         )}
