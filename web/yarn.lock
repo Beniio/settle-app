@@ -1629,12 +1629,20 @@
     "@chakra-ui/form-control" "1.5.4"
     "@chakra-ui/utils" "1.10.0"
 
-"@chakra-ui/theme-tools@1.3.2", "@chakra-ui/theme-tools@^1.3.1":
+"@chakra-ui/theme-tools@1.3.2":
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-1.3.2.tgz#6f3f3212fa603bb42b061bc2a0c69b8bcc15934d"
   integrity sha512-7UyUv6k6CXr3WX7BrR7vAZ2Iobxyyy2INZtlUqS2JK+6/YV1FCmBKsNaTSFHvcSYb/eAPYJwgeQdhkzA1HTKpQ==
   dependencies:
     "@chakra-ui/utils" "1.10.0"
+    "@ctrl/tinycolor" "^3.4.0"
+
+"@chakra-ui/theme-tools@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-1.3.1.tgz#3c1d490a0c3157ba83c5e82ef60de4605cdb0f3a"
+  integrity sha512-D8arJ5uFGuYZrrFGpXqgov8FhsJYWRyar5oBZY5TJR9gsVYBlJ8Ai91pwM/NflCFqzerTOgyt7bNSGQMdZ8ghA==
+  dependencies:
+    "@chakra-ui/utils" "1.9.1"
     "@ctrl/tinycolor" "^3.4.0"
 
 "@chakra-ui/theme@1.13.0":
@@ -1678,10 +1686,20 @@
   dependencies:
     "@chakra-ui/utils" "1.10.0"
 
-"@chakra-ui/utils@1.10.0", "@chakra-ui/utils@^1.9.1":
+"@chakra-ui/utils@1.10.0":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-1.10.0.tgz#c7d35c831ee0972841efe3a5171d22c16141d718"
   integrity sha512-Zm0RoZRBDXEhDCuj2oPeLyGTEH+SwCgbFPTSuwpKSVXOXCtjvA2zWC7cY6Fk1RDcMCVbL2cPlQTTgKnKPh79Lg==
+  dependencies:
+    "@types/lodash.mergewith" "4.6.6"
+    css-box-model "1.2.1"
+    framesync "5.3.0"
+    lodash.mergewith "4.6.2"
+
+"@chakra-ui/utils@1.9.1", "@chakra-ui/utils@^1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-1.9.1.tgz#e34bf74f9f6048da1ec2a5728db4cc80d0158e0e"
+  integrity sha512-Tue8JfpzOqeHd8vSqAnX1l/Y3Gg456+BXFP/TH6mCIeqMAMbrvv25vDskds0wlXRjMYdmpqHxCEzkalFrscGHA==
   dependencies:
     "@types/lodash.mergewith" "4.6.6"
     css-box-model "1.2.1"
@@ -2569,9 +2587,9 @@
   integrity sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==
 
 "@types/node@*":
-  version "17.0.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.12.tgz#f7aa331b27f08244888c47b7df126184bc2339c5"
-  integrity sha512-4YpbAsnJXWYK/fpTVFlMIcUIho2AYCi4wg5aNPrG1ng7fn/1/RZfCIpRCiBX+12RVa34RluilnvCqD+g3KiSiA==
+  version "17.0.13"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.13.tgz#5ed7ed7c662948335fcad6c412bb42d99ea754e3"
+  integrity sha512-Y86MAxASe25hNzlDbsviXl8jQHb0RDvKt4c40ZJQ1Don0AAL0STLZSs4N+6gLEO55pedy7r2cLwS+ZDxPm/2Bw==
 
 "@types/node@^14.0.27":
   version "14.18.9"
@@ -2596,9 +2614,9 @@
     "@types/react" "^16"
 
 "@types/react@^16", "@types/react@^16.8.10":
-  version "16.14.21"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.21.tgz#35199b21a278355ec7a3c40003bd6a334bd4ae4a"
-  integrity sha512-rY4DzPKK/4aohyWiDRHS2fotN5rhBSK6/rz1X37KzNna9HJyqtaGAbq9fVttrEPWF5ywpfIP1ITL8Xi2QZn6Eg==
+  version "16.14.22"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.22.tgz#ee332c031561fa6c5b7fa83d74defce837a2947b"
+  integrity sha512-4NnkxKDd2UO9SiCckuhCQOCzdO+RtE4Epf1D6eGz3f9jZjiIXOVo+Bk3jqSad+8EOT+LBXwKdkFX0V0F+NFzDQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -2622,9 +2640,9 @@
   integrity sha1-DSUBJorY+ZYrdA04fEZU9fjiPlI=
 
 "@types/websocket@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@types/websocket/-/websocket-1.0.4.tgz#1dc497280d8049a5450854dd698ee7e6ea9e60b8"
-  integrity sha512-qn1LkcFEKK8RPp459jkjzsfpbsx36BBt3oC3pITYtkoBw/aVX+EZFa5j3ThCRTNpLFvIMr5dSTD4RaMdilIOpA==
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@types/websocket/-/websocket-1.0.5.tgz#3fb80ed8e07f88e51961211cd3682a3a4a81569c"
+  integrity sha512-NbsqiNX9CnEfC1Z0Vf4mE1SgAJ07JnRYcNex7AJ9zAVzmiGHmjKFEk7O4TJIsgv2B1sLEb6owKFZrACwdYngsQ==
   dependencies:
     "@types/node" "*"
 
@@ -3538,9 +3556,9 @@ camelcase@^6.0.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001093, caniuse-lite@^1.0.30001113, caniuse-lite@^1.0.30001286:
-  version "1.0.30001303"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001303.tgz#9b168e4f43ccfc372b86f4bc5a551d9b909c95c9"
-  integrity sha512-/Mqc1oESndUNszJP0kx0UaQU9kEv9nNtJ7Kn8AdA0mNnH8eR1cj0kG+NbNuC1Wq/b21eA8prhKRA3bbkjONegQ==
+  version "1.0.30001304"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001304.tgz#38af55ed3fc8220cb13e35e6e7309c8c65a05559"
+  integrity sha512-bdsfZd6K6ap87AGqSHJP/s1V+U6Z5lyrcbBu3ovbCCf8cSYpwTtGrCBObMpJqwxfTbLW6YTIdbb1jEeTelcpYQ==
 
 capital-case@^1.0.4:
   version "1.0.4"
@@ -4047,9 +4065,9 @@ cross-fetch@^3.0.4, cross-fetch@^3.0.6:
     node-fetch "2.6.7"
 
 cross-undici-fetch@^0.1.19:
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/cross-undici-fetch/-/cross-undici-fetch-0.1.19.tgz#1bef41652c33ec812b51cd3b4e1295114cd62d4c"
-  integrity sha512-bNBuesVn09Iy15mAM/hpt97fLWSexblVYpUYa5FjbtLHA7om9w3g1uRGGwrEnmVxy3wouNvZyJwQzAPHXgOrxQ==
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/cross-undici-fetch/-/cross-undici-fetch-0.1.20.tgz#935c252d3224a31c96d2107d1a379733732e9333"
+  integrity sha512-czQhJIgyRnyZ6WqbZ3H1FDXwqOnIWFOWB9JOCKSSdlV1W6huHfzDRFiLePljXMxvwLBiQ7Ag7gGuCFtTw+1zHg==
   dependencies:
     abort-controller "^3.0.0"
     form-data-encoder "^1.7.1"
@@ -4443,9 +4461,9 @@ ecdsa-sig-formatter@1.0.11:
     safe-buffer "^5.0.1"
 
 electron-to-chromium@^1.3.488, electron-to-chromium@^1.4.17:
-  version "1.4.54"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.54.tgz#69005d39ed11542e1bcb65ec1a98e44d39527ba8"
-  integrity sha512-jRAoneRdSxnpRHO0ANpnEUtQHXxlgfVjrLOnQSisw1ryjXJXvS0pJaR/v2B7S++/tRjgEDp4Sjn5nmgb6uTySw==
+  version "1.4.57"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.57.tgz#2b2766df76ac8dbc0a1d41249bc5684a31849892"
+  integrity sha512-FNC+P5K1n6pF+M0zIK+gFCoXcJhhzDViL3DRIGy2Fv5PohuSES1JHR7T+GlwxSxlzx4yYbsuzCZvHxcBSRCIOw==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
