@@ -18,19 +18,20 @@ import {
   RegisterMutation
 } from '../generated/graphql';
 import theme from '../theme';
+import { betterUpdateQuery } from '../utils/betterUpdateQuery';
 
-const betterUpdateQuery = <Result, Query>(
-  cache: Cache,
-  qi: QueryInput,
-  result: any,
-  fn: (r: Result, q: Query) => Query
-) => {
-  return cache.updateQuery(
-    qi,
-    (data) =>
-      parseConfigFileTextToJson(result, data as any) as any
-  );
-};
+// const betterUpdateQuery = <Result, Query>(
+//   cache: Cache,
+//   qi: QueryInput,
+//   result: any,
+//   fn: (r: Result, q: Query) => Query
+// ) => {
+//   return cache.updateQuery(
+//     qi,
+//     (data) =>
+//       parseConfigFileTextToJson(result, data as any) as any
+//   );
+// };
 
 const client = createClient({
   url: 'http://localhost:4000/graphql',
