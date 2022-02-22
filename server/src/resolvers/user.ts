@@ -13,6 +13,8 @@ import {
 import argon2 from 'argon2';
 import { EntityManager } from '@mikro-orm/postgresql';
 import { COOKIE_NAME } from '../constants';
+import { CookieOptions } from 'express';
+
 @InputType()
 class UsernamePasswordInput {
   @Field()
@@ -157,15 +159,19 @@ export class UserResolver {
 
   @Mutation(() => Boolean)
   logout(@Ctx() { req, res }: MyContext) {
-    new Promise((resolved) =>
+    var options: CookieOptions = {
+      path: '/',
+      domain: 'localhost'
+    };
+    return new Promise((resolve) =>
       req.session.destroy((err: any) => {
-        res.clearCookie(COOKIE_NAME);
+        res.clearCookie(COOKIE_NAME, options).send();
         if (err) {
           console.log(err);
-          resolved(false);
-        } else {
-          resolved(true);
+          resolve(false);
+          return;
         }
+        resolve(true);
       })
     );
   }
