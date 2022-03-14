@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-export async function sendEmail(to: string, text: string) {
+export async function sendEmail(to: string, html: string) {
   let testAccount = await nodemailer.createTestAccount();
   console.log('testAccount', testAccount);
   let transporter = nodemailer.createTransport({
@@ -14,10 +14,10 @@ export async function sendEmail(to: string, text: string) {
   });
 
   let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>',
+    from: '<foo@example.com>',
     to: to,
     subject: 'Change password',
-    text: text
+    html
   });
 
   console.log('Message sent: %s', info.messageId);
