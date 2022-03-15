@@ -17,6 +17,9 @@ import { COOKIE_NAME } from '../constants';
 @InputType()
 class UsernamePasswordInput {
   @Field()
+  email!: string;
+
+  @Field()
   username!: string;
 
   @Field()
@@ -69,6 +72,16 @@ export class UserResolver {
     @Arg('options') options: UsernamePasswordInput,
     @Ctx() { em }: MyContext
   ): Promise<UserResponse> {
+    if (!options.email.includes('@')) {
+      return {
+        errors: [
+          {
+            field: 'email',
+            message: 'invalid email format'
+          }
+        ]
+      };
+    }
     if (options.username.length <= 2) {
       return {
         errors: [
@@ -101,6 +114,7 @@ export class UserResolver {
         .getKnexQuery()
         .insert({
           username: options.username,
+          email: options.email,
           password: hashedPassword,
           created_at: new Date(),
           updated_at: new Date()
