@@ -1,16 +1,29 @@
 import {
+  BaseEntity,
+  Column,
   Entity,
-  PrimaryKey,
-  Property
-} from '@mikro-orm/core';
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import { Field, ObjectType } from 'type-graphql';
+import { Property } from '@mikro-orm/core';
 
-@Entity()
 @ObjectType()
-export class User {
+@Entity()
+export class User extends BaseEntity {
   @Field()
-  @PrimaryKey()
+  @PrimaryGeneratedColumn()
   id!: number;
+
+  @Field()
+  @Column({ unique: true })
+  username!: string;
+
+  @Field()
+  @Column({ unique: true })
+  email!: string;
+
+  @Column()
+  password!: string;
 
   @Field(() => String)
   @Property({ type: 'date' })
@@ -19,15 +32,4 @@ export class User {
   @Field(() => String)
   @Property({ type: 'date', onUpdate: () => new Date() })
   updatedAt = new Date();
-
-  @Field(() => String)
-  @Property({ type: 'text', unique: true })
-  username!: string;
-
-  @Field(() => String)
-  @Property({ type: 'text', unique: true })
-  email!: string;
-
-  @Property({ type: 'text' })
-  password!: string;
 }

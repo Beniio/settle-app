@@ -1,49 +1,43 @@
-import { UsernamePasswordInput } from 'src/resolvers/UsernamePasswordInput';
+import { UsernamePasswordInput } from '../resolvers/UsernamePasswordInput';
 
 export const validateRegister = (
   options: UsernamePasswordInput
 ) => {
   if (!options.email.includes('@')) {
-    return {
-      errors: [
-        {
-          field: 'email',
-          message: 'invalid email format'
-        }
-      ]
-    };
+    return [
+      {
+        field: 'email',
+        message: 'invalid email format'
+      }
+    ];
   }
 
   if (options.username.includes('@')) {
-    return {
-      errors: [
-        {
-          field: 'username',
-          message: 'cannot include @ sign'
-        }
-      ]
-    };
+    return [
+      {
+        field: 'username',
+        message: 'cannot include @ sign'
+      }
+    ];
   }
 
   if (options.username.length <= 2) {
-    return {
-      errors: [
-        {
-          field: 'username',
-          message: 'length must be grater than 2'
-        }
-      ]
-    };
+    return [
+      {
+        field: 'username',
+        message: 'length must be grater than 2'
+      }
+    ];
   }
 
   if (options.password.length <= 2) {
-    return {
-      errors: [
-        {
-          field: 'password',
-          message: 'length must be grater than 3'
-        }
-      ]
-    };
+    return [
+      {
+        field: 'password',
+        message: 'length must be grater than 3'
+      }
+    ];
   }
+
+  return null;
 };

@@ -13,7 +13,7 @@ import argon2 from 'argon2';
 import { EntityManager } from '@mikro-orm/postgresql';
 import { COOKIE_NAME } from '../constants';
 import { UsernamePasswordInput } from './UsernamePasswordInput';
-import { validateRegister } from 'src/utils/validateRegister';
+import { validateRegister } from '../utils/validateRegister';
 
 @ObjectType()
 class FieldError {
@@ -41,7 +41,7 @@ export class UserResolver {
     @Ctx()
     { em }: MyContext
   ) {
-    const user = await em.findOne(User, { email });
+    await em.findOne(User, { email });
     return true;
   }
 
@@ -61,9 +61,9 @@ export class UserResolver {
     @Arg('options') options: UsernamePasswordInput,
     @Ctx() { em }: MyContext
   ): Promise<UserResponse> {
-    const response = validateRegister(options);
-    if (response) {
-      return response;
+    const errors = validateRegister(options);
+    if (errors) {
+      return { errors };
     }
     const hashedPassword = await argon2.hash(
       options.password
@@ -76,9 +76,7 @@ export class UserResolver {
         .insert({
           username: options.username,
           email: options.email,
-          password: hashedPassword,
-          created_at: new Date(),
-          updated_at: new Date()
+          password: hashedPassword
         })
         .returning('*');
       user = result[0];
