@@ -9,7 +9,7 @@ export default {
     path: path.join(__dirname, './migrations'),
     pattern: /^[\w-]+\d+\.[tj]s$/
   },
-  entities: [Post, User],
+  entities: [User, Post],
   dbName: 'settle',
   type: 'postgresql',
   debug: !_prod_
