@@ -76,7 +76,9 @@ export class UserResolver {
         .insert({
           username: options.username,
           email: options.email,
-          password: hashedPassword
+          password: hashedPassword,
+          created_at: new Date(),
+          updated_at: new Date()
         })
         .returning('*');
       user = result[0];

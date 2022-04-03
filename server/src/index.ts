@@ -12,11 +12,10 @@ import Redis from 'ioredis';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 import cors from 'cors';
-import { User } from './entities/User';
 
 const main = async () => {
   const orm = await MikroORM.init(mikroOrmConfig);
-  await orm.em.nativeDelete(User, {});
+  // await orm.em.nativeDelete(User, {});
   await orm.getMigrator().up();
 
   const app = express();
@@ -26,7 +25,7 @@ const main = async () => {
 
   app.use(
     cors({
-      origin: 'http://localhost:3000/',
+      origin: 'http://localhost:3000',
       credentials: true
     })
   );
@@ -51,11 +50,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [
-        HelloResolver,
-        PostResolver,
-        UserResolver
-      ],
+      resolvers: [HelloResolver, PostResolver, UserResolver],
       validate: false
     }),
     context: ({ req, res }) => ({ em: orm.em, req, res })
