@@ -1,19 +1,12 @@
 import { User } from '../entities/User';
 import { MyContext } from '../types';
-import {
-  Arg,
-  Ctx,
-  Field,
-  Mutation,
-  ObjectType,
-  Query,
-  Resolver
-} from 'type-graphql';
+import { Arg, Ctx, Field, Mutation, ObjectType, Query, Resolver } from 'type-graphql';
 import argon2 from 'argon2';
 import { EntityManager } from '@mikro-orm/postgresql';
 import { COOKIE_NAME } from '../constants';
 import { UsernamePasswordInput } from './UsernamePasswordInput';
 import { validateRegister } from '../utils/validateRegister';
+import { sendEmail } from 'src/utils/sendEmail';
 
 @ObjectType()
 class FieldError {
@@ -41,7 +34,11 @@ export class UserResolver {
     @Ctx()
     { em }: MyContext
   ) {
-    await em.findOne(User, { email });
+    const user = await em.findOne(User, { email });
+    if (!user) {
+      return true;
+    }
+    sendEmail(email, '');
     return true;
   }
 
@@ -57,17 +54,12 @@ export class UserResolver {
   }
 
   @Mutation(() => UserResponse)
-  async register(
-    @Arg('options') options: UsernamePasswordInput,
-    @Ctx() { em }: MyContext
-  ): Promise<UserResponse> {
+  async register(@Arg('options') options: UsernamePasswordInput, @Ctx() { em }: MyContext): Promise<UserResponse> {
     const errors = validateRegister(options);
     if (errors) {
       return { errors };
     }
-    const hashedPassword = await argon2.hash(
-      options.password
-    );
+    const hashedPassword = await argon2.hash(options.password);
     let user;
     try {
       const result = await (em as EntityManager)
@@ -127,10 +119,7 @@ export class UserResolver {
       };
     }
 
-    const valid = await argon2.verify(
-      user.password,
-      password
-    );
+    const valid = await argon2.verify(user.password, password);
     if (!valid) {
       return {
         errors: [
