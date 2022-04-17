@@ -20,7 +20,7 @@ const main = async () => {
   const app = express();
 
   const RedisStore = connectRedis(session);
-  const redisClient = new Redis(process.env.REDIS);
+  const redis = new Redis();
 
   app.use(
     cors({
@@ -32,7 +32,7 @@ const main = async () => {
     session({
       name: COOKIE_NAME,
       store: new RedisStore({
-        client: redisClient || null,
+        client: redis as any,
         disableTouch: true
       }),
       cookie: {
@@ -52,7 +52,7 @@ const main = async () => {
       resolvers: [HelloResolver, PostResolver, UserResolver],
       validate: false
     }),
-    context: ({ req, res }) => ({ em: orm.em, req, res })
+    context: ({ req, res }) => ({ em: orm.em, req, res, redis })
   });
 
   apolloServer.applyMiddleware({
