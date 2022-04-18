@@ -38,7 +38,7 @@ export const ChangePassword: NextPage<{ token: string }> = ({ token }) => {
           {({ isSubmitting }) => (
             <Form>
               <InputField name="newPassword" placeholder="new password" label="new password" type="password" />
-              {tokenError ? <Box color="red">{tokenError}</Box> : null}
+              {tokenError ? <Box style={{ color: 'red' }}>{tokenError}</Box> : null}
               <Button mt={4} isLoading={isSubmitting} type="submit" variantColor="teal">
                 Change Password
               </Button>
