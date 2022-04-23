@@ -1,7 +1,5 @@
 import 'reflect-metadata';
-import { MikroORM } from '@mikro-orm/core';
 import { COOKIE_NAME, _prod_ } from './constants';
-import mikroOrmConfig from './mikro-orm.config';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
@@ -17,16 +15,15 @@ import { Post } from './entities/Post';
 import { User } from './entities/User';
 
 const main = async () => {
-  const connection = createConnection({
+  createConnection({
     type: 'postgres',
     database: 'settle',
-    username: 'postgress',
-    password: 'postgress',
+    username: 'postgres',
+    password: 'postgres',
     logging: true,
     synchronize: true,
     entities: [Post, User]
   });
-
   const app = express();
 
   const RedisStore = connectRedis(session);
