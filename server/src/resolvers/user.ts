@@ -128,7 +128,7 @@ export class UserResolver {
         })
         .returning('*')
         .execute();
-      user = result.raw;
+      user = result.raw[0];
     } catch (err: any) {
       if (err.code === '23505') {
         return {
