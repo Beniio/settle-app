@@ -7,7 +7,6 @@ import { UsernamePasswordInput } from './UsernamePasswordInput';
 import { validateRegister } from '../utils/validateRegister';
 import { sendEmail } from '../utils/sendEmail';
 import { v4 } from 'uuid';
-import { getConnection } from 'typeorm';
 @ObjectType()
 class FieldError {
   @Field()
@@ -117,18 +116,13 @@ export class UserResolver {
     const hashedPassword = await argon2.hash(options.password);
     let user;
     try {
-      const result = await getConnection()
-        .createQueryBuilder()
-        .insert()
-        .into(User)
-        .values({
-          username: options.username,
-          email: options.email,
-          password: hashedPassword
-        })
-        .returning('*')
-        .execute();
-      user = result.raw[0];
+      const result = await User.create({
+        username: options.username,
+        email: options.email,
+        password: hashedPassword
+      }).save();
+
+      user = result;
     } catch (err: any) {
       if (err.code === '23505') {
         return {
