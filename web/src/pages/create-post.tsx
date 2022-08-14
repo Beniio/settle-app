@@ -1,8 +1,10 @@
 import { Box, Button } from '@chakra-ui/core';
 import { Formik, Form } from 'formik';
+import { withUrqlClient } from 'next-urql';
 import React from 'react';
 import { InputField } from '../components/InputField';
 import { Wrapper } from '../components/Wrapper';
+import { createUrqlClient } from '../utils/createUrqlClient';
 
 export const CreatePost: React.FC<{}> = ({}) => {
   return (
@@ -12,7 +14,7 @@ export const CreatePost: React.FC<{}> = ({}) => {
           title: '',
           text: ''
         }}
-        onSubmit={async (values, { setErrors }) => {
+        onSubmit={async (values, {}) => {
           console.log(values);
         }}
       >
@@ -31,3 +33,4 @@ export const CreatePost: React.FC<{}> = ({}) => {
     </Wrapper>
   );
 };
+export default withUrqlClient(createUrqlClient)(CreatePost);

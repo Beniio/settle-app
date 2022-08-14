@@ -1,10 +1,7 @@
 import { Box, Link } from '@chakra-ui/layout';
 import React from 'react';
 import NextLink from 'next/link';
-import {
-  useLogoutMutation,
-  useMeQuery
-} from '../generated/graphql';
+import { useLogoutMutation, useMeQuery } from '../generated/graphql';
 import { Button, Flex } from '@chakra-ui/core';
 import { isServer } from '../utils/isServer';
 interface NavBarProps {}
@@ -13,8 +10,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
   const [{ data, fetching }] = useMeQuery({
     pause: isServer()
   });
-  const [{ fetching: logoutFetching }, logout] =
-    useLogoutMutation();
+  const [{ fetching: logoutFetching }, logout] = useLogoutMutation();
   let body = null;
 
   if (fetching) {
@@ -48,13 +44,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
   }
 
   return (
-    <Flex
-      zIndex={1}
-      position="sticky"
-      top={0}
-      bg="tan"
-      p={4}
-    >
+    <Flex zIndex={1} position="sticky" top={0} bg="tan" p={4}>
       <Flex flex={1} m="auto" align="center" maxW={800}>
         <NextLink href="/">
           <Link>SettleApp</Link>
