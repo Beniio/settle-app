@@ -10,7 +10,7 @@ class PostInput {
   text?: string;
 }
 
-@Resolver()
+@Resolver(Post)
 export class PostResolver {
   @Query(() => [Post])
   posts(): Promise<Post[]> {
